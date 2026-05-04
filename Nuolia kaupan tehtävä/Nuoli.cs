@@ -2,40 +2,36 @@
 {
     class Nuoli
     {
-        private Karki karki;
-        private Pera pera;
-        private int pituus;
+        public Karki Karki { get; }
+        public Pera Pera { get; }
+        public int Pituus { get; }
 
         public Nuoli(Karki karki, Pera pera, int pituus)
         {
-            this.karki = karki;
-            this.pera = pera;
-            this.pituus = pituus;
+            Karki = karki;
+            Pera = pera;
+            Pituus = pituus;
         }
-
-        public Karki GetKarki() => karki;
-        public Pera GetPera() => pera;
-        public int GetPituus() => pituus;
 
         public int PalautaHinta()
         {
             int hinta = 0;
 
-            switch (karki)
+            switch (Karki)
             {
                 case Karki.Puu: hinta += 3; break;
                 case Karki.Teras: hinta += 5; break;
                 case Karki.Timantti: hinta += 50; break;
             }
 
-            switch (pera)
+            switch (Pera)
             {
                 case Pera.Lehti: hinta += 0; break;
                 case Pera.Kanansulka: hinta += 1; break;
                 case Pera.Kotkansulka: hinta += 5; break;
             }
 
-            hinta += (int)(pituus * 0.05);
+            hinta += (int)(Pituus * 0.05);
 
             return hinta;
         }
