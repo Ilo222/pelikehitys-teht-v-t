@@ -35,5 +35,21 @@
 
             return hinta;
         }
+
+        // Valmiit nuolipohjat
+        public static Nuoli LuoEliittiNuoli()
+        {
+            return new Nuoli(Karki.Timantti, Pera.Kotkansulka, 100);
+        }
+
+        public static Nuoli LuoAloittelijaNuoli()
+        {
+            return new Nuoli(Karki.Puu, Pera.Kanansulka, 70);
+        }
+
+        public static Nuoli LuoPerusNuoli()
+        {
+            return new Nuoli(Karki.Teras, Pera.Kanansulka, 85);
+        }
     }
 }

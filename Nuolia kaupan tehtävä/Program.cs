@@ -2,56 +2,52 @@
 
 namespace NuoliPeli
 {
-    enum Karki { Puu, Teras, Timantti }
-    enum Pera { Lehti, Kanansulka, Kotkansulka }
-
     class Program
     {
-        static void Main()
+        static void Main(string[] args)
         {
-            // Luetaan syötteet ja käsitellään mahdollinen null
-            Console.Write("Minkälainen kärki (puu, teräs, timantti)?: ");
-            string karkiInput = Console.ReadLine() ?? "";
+            Console.WriteLine("Tervetuloa nuolikauppaan.");
+            Console.WriteLine("Haluatko:");
+            Console.WriteLine("1. Teettää nuolen tilaustyönä?");
+            Console.WriteLine("2. Ostaa valmiin nuolen?");
+            int valinta = int.Parse(Console.ReadLine());
 
-            Console.Write("Minkälaiset sulat (lehti, kanansulka, kotkansulka)?: ");
-            string peraInput = Console.ReadLine() ?? "";
+            Nuoli nuoli;
 
-            int pituus = 0;
-            while (true)
+            if (valinta == 2)
             {
-                Console.Write("Nuolen pituus sentteinä (60-100): ");
-                string pituusInput = Console.ReadLine() ?? "";
+                Console.WriteLine("Valitse valmis nuoli:");
+                Console.WriteLine("1. Eliittinuoli");
+                Console.WriteLine("2. Aloittelijanuoli");
+                Console.WriteLine("3. Perusnuoli");
 
-                if (!int.TryParse(pituusInput, out pituus))
-                {
-                    Console.WriteLine("Virheellinen syöte pituudelle!");
-                    continue;
-                }
+                int valinta2 = int.Parse(Console.ReadLine());
+
+                if (valinta2 == 1)
+                    nuoli = Nuoli.LuoEliittiNuoli();
+                else if (valinta2 == 2)
+                    nuoli = Nuoli.LuoAloittelijaNuoli();
                 else
-                {
-                    break;
-                }
+                    nuoli = Nuoli.LuoPerusNuoli();
+            }
+            else
+            {
+                Console.WriteLine("Valitse kärki: 1=Puu, 2=Teräs, 3=Timantti");
+                int k = int.Parse(Console.ReadLine());
+
+                Console.WriteLine("Valitse perä: 1=Lehti, 2=Kanansulka, 3=Kotkansulka");
+                int p = int.Parse(Console.ReadLine());
+
+                Console.WriteLine("Anna pituus (60-100):");
+                int pit = int.Parse(Console.ReadLine());
+
+                Karki karki = (Karki)(k - 1);
+                Pera pera = (Pera)(p - 1);
+
+                nuoli = new Nuoli(karki, pera, pit);
             }
 
-            // Muutetaan syöte enumiksi
-            Karki karki = karkiInput.ToLower() switch
-            {
-                "puu" => Karki.Puu,
-                "teräs" => Karki.Teras,
-                "timantti" => Karki.Timantti,
-                _ => throw new Exception("Virheellinen kärki")
-            };
-
-            Pera pera = peraInput.ToLower() switch
-            {
-                "lehti" => Pera.Lehti,
-                "kanansulka" => Pera.Kanansulka,
-                "kotkansulka" => Pera.Kotkansulka,
-                _ => throw new Exception("Virheellinen perä")
-            };
-
-            Nuoli nuoli = new Nuoli(karki, pera, pituus);
-            Console.WriteLine($"Tämän nuolen hinta on {nuoli.PalautaHinta()} kultarahaa.");
+            Console.WriteLine($"Nuolen hinta on {nuoli.PalautaHinta()} kultarahaa.");
         }
     }
 }
