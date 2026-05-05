@@ -16,6 +16,11 @@ class Tavara
         this.paino = paino;
         this.tilavuus = tilavuus;
     }
+
+    public override string ToString()
+    {
+        return GetType().Name;
+    }
 }
 
 class Nuoli : Tavara { public Nuoli() : base(0.1, 0.05) { } }
@@ -75,6 +80,14 @@ class Reppu
         Console.WriteLine($"Paino: {NykyinenPaino}/{maxPaino}");
         Console.WriteLine($"Tilavuus: {NykyinenTilavuus}/{maxTilavuus}");
     }
+
+    public override string ToString()
+    {
+        if (tavarat.Count == 0)
+            return "Repussa ei ole tavaroita.";
+
+        return "Repussa on seuraavat tavarat: " + string.Join(", ", tavarat);
+    }
 }
 
 class Program
@@ -84,6 +97,9 @@ class Program
         CultureInfo.CurrentCulture = new CultureInfo("fi-FI");
 
         Reppu reppu = new Reppu(10, 30, 20);
+
+        // Tulostetaan repun sisältö ennen kuin lisätään mitään
+        Console.WriteLine(reppu);
 
         while (true)
         {
