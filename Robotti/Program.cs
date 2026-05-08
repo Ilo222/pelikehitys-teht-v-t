@@ -1,6 +1,6 @@
 ﻿using System;
 
-// Robotti-luokka annettu valmiiksi
+
 public class Robotti
 {
     public int X { get; set; }
@@ -18,13 +18,13 @@ public class Robotti
     }
 }
 
-// Abstrakti komento-luokka
+
 public abstract class RobottiKäsky
 {
     public abstract void Suorita(Robotti robotti);
 }
 
-// Käynnistä- ja Sammuta-käskyt
+
 public class Käynnistä : RobottiKäsky
 {
     public override void Suorita(Robotti robotti)
@@ -41,7 +41,7 @@ public class Sammuta : RobottiKäsky
     }
 }
 
-// Liikkumiskäskyt
+
 public class YlösKäsky : RobottiKäsky
 {
     public override void Suorita(Robotti robotti)
@@ -78,7 +78,7 @@ public class OikeaKäsky : RobottiKäsky
     }
 }
 
-// Pääohjelma
+
 class Program
 {
     static void Main()
